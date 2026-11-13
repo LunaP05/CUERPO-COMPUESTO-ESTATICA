@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 465px;
+    height: 244px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+    max-width: 440px;
+    max-height: 230px;
+  }
+</style>
+</head>
+<body>
+
+<svg viewBox="0 0 300 180">
+  <!-- Ejes de referencia -->
+  <line x1="40" y1="150" x2="270" y2="150" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="275" y="154" font-size="11" fill="#475569" font-style="italic">x</text>
+
+  <line x1="50" y1="160" x2="50" y2="25" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="46" y="20" font-size="11" fill="#475569" font-style="italic">y</text>
+
+  <!-- Partes simples que se ensamblan (Cuerpo compuesto) -->
+  <!-- Pieza 1 (Izquierda) -->
+  <rect id="pieza1" x="80" y="80" width="45" height="50" rx="4" fill="#e8f3e1" stroke="#4d8c4a" stroke-width="2"/>
+  <text x="96" y="108" font-size="12" font-weight="bold" fill="#264d28">W₁</text>
+
+  <!-- Pieza 2 (Centro - Triángulo o bloque superior) -->
+  <polygon id="pieza2" points="125,130 170,130 147,70" fill="#d1e7c4" stroke="#4d8c4a" stroke-width="2"/>
+  <text x="139" y="112" font-size="12" font-weight="bold" fill="#264d28">W₂</text>
+
+  <!-- Pieza 3 (Derecha) -->
+  <rect id="pieza3" x="170" y="95" width="55" height="35" rx="4" fill="#e8f3e1" stroke="#4d8c4a" stroke-width="2"/>
+  <text x="192" y="116" font-size="12" font-weight="bold" fill="#264d28">W₃</text>
+
+  <!-- Centroide general del sistema compuesto C (X̄, Ȳ) -->
+  <circle cx="150" cy="98" r="5" fill="#264d28" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="160" y="90" font-size="11" font-weight="bold" fill="#264d28">C (X̄, Ȳ)</text>
+
+  <!-- Línea de posición general -->
+  <line x1="150" y1="98" x2="150" y2="150" stroke="#e11d48" stroke-width="1.5" stroke-dasharray="3,3"/>
+</svg>
+
+<script>
+  const p1 = document.getElementById('pieza1');
+  const p2 = document.getElementById('pieza2');
+  const p3 = document.getElementById('pieza3');
+
+  let t = 0;
+
+  function animarCompuesto() {
+    t += 0.03;
+    // Efecto sutil de ensamblaje/respiración de las piezas para mostrar que se suman
+    const despl = Math.sin(t) * 3;
+    
+    p1.setAttribute('x', 80 - despl);
+    p3.setAttribute('x', 170 + despl);
+
+    requestAnimationFrame(animarCompuesto);
+  }
+
+  animarCompuesto();
+</script>
+</body>
+</html>
